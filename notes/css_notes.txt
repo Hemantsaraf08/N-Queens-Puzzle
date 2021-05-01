@@ -1,0 +1,8 @@
+when height is given to a container ex: <div> if the content is not fitting inside the container height; we must use
+overflow: auto (in css) so that a scroll bar (vertical) is attached to the <div>, to control width; you can use 
+        word-break: break-all; //when div contains text;
+
+when property: contenteditable: true, is used on <div> IT BEHAVES LIKE AN INPUT target
+Similarlly: when readonly property is applied on an <input> tag it behaves like a <div> tag
+
+calc() is used to calculate and set values in CSS styles: ex: height/width to fit a container,  when position: absolute to set left and top

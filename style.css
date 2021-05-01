@@ -1,0 +1,99 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    background-image:linear-gradient(#ffeaa7, #F8EFBA)
+    /* background-image: linear-gradient(direction, color-stop1, color-stop2, ...); */
+}
+.title{
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.puzzle-name{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-size:larger;
+    color: black;
+}
+.description{
+    margin-top: -30px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    text-indent: 50px;
+    text-align: justify;
+    letter-spacing: 3px;
+    font-size: 1.5rem;
+}
+.hidden-container{
+    height: 45px;
+    margin-top: -5px;
+    position: relative;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.hiddentext{
+    text-align: center;
+    font-size: 1.8rem;
+}
+.chess-board{
+    margin: 0 auto;
+    height: 90vh;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    position: relative;
+}
+
+.solved-message{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* background-color: lightgray; */
+    font-size: 4rem;
+}
+.buttons{
+    margin-top: 1rem;
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.button{
+    border: 0;
+    line-height: 2.5;
+    padding: 0 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #000;
+    border-radius: 5px;
+    background-color:#a0522d;
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset 2px 2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+
+.button:hover {
+    background-color: rgb(245, 8, 8);
+}
+
+.button:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset 2px 2px 3px rgba(0, 0, 0, .6);
+}
+.feedback{
+    text-align: center;
+    color: gray;
+}

@@ -1,0 +1,54 @@
+to remove an event listener --> we need to pass two parameter to removeEventListener(param1, param2);
+where param1 --> event i.e. "click" , "keydown"
+      param2 --> call back function for addEventHandler
+      but this param2 function MUST be written separately, using a function name and this name is passed to removeEventListener
+      
+      However this presents a problem when we are applying param2 call back function to a NodeList or element list
+      because there if we write function separately we can't keep track of index to which the EventListener is attached
+
+      Therefore we need to use the eventHandler obj of "click" (in this case) and use its property currentTarget
+      currentTarget gives the NODE TO WHICH CLICK IS MADE;
+      AND INDEX INFO can't be got from list of DOM element Therefore we convert 
+      DOM list to array using:
+            let arr=Array.prototype.slice.call(<--DOMNodelist-->);
+      Then access index using 
+            let i=<--DOMNodelist-->.indexOf((click)eventObject.currentTarget);
+
+*************************************************************************************
+it is not necessary to apply querySelector/querySelectorAll on document; 
+it can also be applied on DOM element already selected using querySelector, to go deeper into that previously selected element
+Ex: let parentEle=document.querySelector("#someid");
+
+now
+ 
+parentEle.querySelector(".someclass");
+
+*************************************************************************************
+EventObj.currentTarget VS EventObj.target;
+
+currentTarget gives the node on which EventListener is added; 
+whereas target gives the node/ELEMENT on which Event had occured(click was made) ; IT CAN ALSO BE CHILD NODE OF THE EventListener NODE
+so target is a subset of currentTarget; 
+
+*************************************************************************************
+
+classList is an important method that can be applied on node selected using querySelector;
+Basic function: 
+<Node selected>.classList.add("--class name to be added--");
+<Node selected>.classList.remove("--class name to be removed--");
+
+*************************************************************************************
+Defer: 
+defer is added to <script> tag of HTML so as to defer the loading/running of script before HTML & CSS content are 
+completely loaded;
+Ex: <script src="https:\\cdn.lfadljasdlfj.lfja" defer> </script>
+
+if 2 defers are used first defer is loaded first, and then the next defer
+
+*************************************************************************************
+In cases where ONE EVENT IS DEPENDENT ON ANOTHER EVENT
+
+Instead of adding one EventListener inside another EventListener we can use a boolean to check if first EventListener is 
+active and then if its active second EventListener will work (check jeera app tickets task for example, specifically deleteTask() function)
+
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>N-Queen Puzzle</title>
+</head>
+<body>
+    <div class="title">
+        <img src="queen.png" alt="Queen image" height="45px"></img>
+        <div class="puzzle-name">
+            <h1>8-Queens</h1>
+        </div>
+        <img src="queen.png" alt="Queen image" height="45px">
+    </div>
+    <div class="description">
+        <p>In this puzzle, you are required to place 8-Queens on the 8*8 chess board below, click the squares such that no queen kills the other queen (Remember that queens can kill in all 8 direction).</p>
+    </div>
+    <div class="hidden-container" style="display:none">
+        <h3 class="hidden-container hiddentext">BACKTRACKING!</h3>
+    </div>
+    <div class="chess-board">
+        <svg class="game1" id="boxes" width="100%" height="100%" viewBox="0 0 480 480">
+            <rect x="0" y="0" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="0" y="0" width="50" height="50" style="display:true;" ></image>
+            <rect x="60" y="0" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="60" y="0" width="50" height="50" style="display:true;" ></image>
+            <rect x="120" y="0" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="120" y="0" width="50" height="50" style="display:true;" ></image>
+            <rect x="180" y="0" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="180" y="0"  width="50" height="50" style="display:true;" ></image>
+            <rect x="240" y="0" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="240" y="0" width="50" height="50" style="display:true;" ></image>
+            <rect x="300" y="0" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="300" y="0" width="50" height="50" style="display:true;" ></image>
+            <rect x="360" y="0" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="360" y="0" width="50" height="50" style="display:true;" ></image>
+            <rect x="420" y="0" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="425" y="5" width="50" height="50" style="display:true;" ></image>
+    
+            <rect x="0" y="60" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="0" y="60" width="50" height="50" style="display:none;"></image>
+            <rect x="60" y="60" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="60" y="60" width="50" height="50" style="display:none;"></image>
+            <rect x="120" y="60" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="120" y="60" width="50" height="50" style="display:none;"></image>
+            <rect x="180" y="60" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="180" y="60"  width="50" height="50" style="display:none;"></image>
+            <rect x="240" y="60" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="240" y="60" width="50" height="50" style="display:none"></image>
+            <rect x="300" y="60" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="300" y="60" width="50" height="50" style="display:none;"></image>
+            <rect x="360" y="60" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="360" y="60" width="50" height="50" style="display:none;"></image>
+            <rect x="420" y="60" width="60" height="60" fill="#ffdab9"></rect>  
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="420" y="60" width="50" height="50" style="display:none;"></image>
+    
+            <rect x="0" y="120" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: true;" ></image>
+            <rect x="60" y="120" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: true;" ></image>
+            <rect x="120" y="120" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: true;" ></image>
+            <rect x="180" y="120" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: true;" ></image>
+            <rect x="240" y="120" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: true;" ></image>
+            <rect x="300" y="120" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: true;" ></image>
+            <rect x="360" y="120" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: true;" ></image>
+            <rect x="420" y="120" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+    
+            <rect x="0" y="180" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="60" y="180" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="120" y="180" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="180" y="180" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="240" y="180" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="300" y="180" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="360" y="180" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="420" y="180" width="60" height="60" fill="#ffdab9"></rect>                
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+    
+            <rect x="0" y="240" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="60" y="240" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="120" y="240" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="180" y="240" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="240" y="240" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="300" y="240" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="360" y="240" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="420" y="240" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+                   
+            <rect x="0" y="300" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="60" y="300" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="120" y="300" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="180" y="300" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="240" y="300" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="300" y="300" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="360" y="300" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="420" y="300" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="0" y="360" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="60" y="360" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="120" y="360" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="180" y="360" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="240" y="360" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="300" y="360" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="360" y="360" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="420" y="360" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            
+            <rect x="0" y="420" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="60" y="420" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="120" y="420" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="180" y="420" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="240" y="420" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="300" y="420" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="360" y="420" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>
+            <rect x="420" y="420" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" width="60" height="60" style="display: none;" ></image>        
+        </svg>
+        <div class="solved-message" style="display: true">
+            BRAVO! You have solved it!
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="reset">
+            <input class="reset button" type="button" value="Reset">
+        </div>
+        <div class="impossible">
+            <input class="impossible button" type="button" value="It's impossible">
+        </div>
+    </div>
+    <div class="feedback">
+        Hope you enjoyed it. Reach out to me at: <a href="mailto:hemantsaraf08@gmail.com">hemantsaraf08@gmail.com</a>
+    </div>   
+    <script src="script.js"></script>
+</body>
+</html>

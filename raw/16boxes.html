@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>N-Queen Puzzle</title>
+</head>
+<body>
+    <div class="title">
+        <img src="queen.png" alt="Queen image" height="45px"></img>
+        <div class="puzzle-name">
+            <h1>8-Queens</h1>
+        </div>
+        <img src="queen.png" alt="Queen image" height="45px">
+    </div>
+    <div class="description">
+        <p>In this puzzle, you are required to place 8-Queens on the 8*8 chess board below, click the squares such that no queen kills the other queen (Remember that queens can kill in all 8 direction).</p>
+    </div>
+    <div class="hidden-container" style="display:none">
+        <h3 class="hidden-container hiddentext">BACKTRACKING!</h3>
+    </div>
+    <div class="chess-board">
+        <svg class="game1" id="boxes" width="700px" height="700px" viewBox="0 0 240 240">
+            <defs>
+                <pattern x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse" id="boxstikes" viewBox="0 0 10 10">
+                    <path d="M 10,-5 L -10,15 M 15,0 L 0,15 M 0,-5 L -20,15" fill="none" style="stroke-width: .5;" stroke="#000000"></path>
+                </pattern>
+            </defs>
+            <rect x="0" y="0" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" preserveAspectRatio="none" alt="Chess queen" x="0" y="0" i="0" j='0' width="50" height="50" style="display:none" ></image>
+            <rect x="0" y="0" width="60" height="60"  class="dynamic-box" fill="url('#boxstikes')" i='0' j='0' style="opacity:0"></rect>
+            <rect x="60" y="0" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  preserveAspectRatio="none" x="60" y="0" width="50" height="50" style="display:none" ></image>
+            <rect x="60" y="0" width="60" height="60"  class="dynamic-box" fill="url('#boxstikes')" i='0' j='1' style="opacity:0"></rect>
+            <rect x="120" y="0" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" preserveAspectRatio="none"  x="120" y="0" width="50" height="50" style="display:none" ></image>
+            <rect x="120" y="0" width="60" height="60" class="dynamic-box"  fill="url('#boxstikes')" i='0' j='2' style="opacity:0"></rect>
+            <rect x="180" y="0" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" preserveAspectRatio="none"  x="180" y="0"  width="50" height="50" style="display:none" ></image>
+            <rect x="180" y="0" width="60" height="60"  class="dynamic-box" fill="url('#boxstikes')" i='0' j='3' style="opacity:0"></rect>
+            
+            <rect x="0" y="60" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="0" y="60" width="50" height="50" style="display:none" ></image>
+            <rect x="0" y="60" width="60" height="60"  class="dynamic-box" fill="url('#boxstikes')" i='1' j='0' style="opacity:0"></rect>
+            <rect x="60" y="60" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="60" y="60" width="50" height="50" style="display:none" ></image>
+            <rect x="60" y="60" width="60" height="60"  class="dynamic-box" fill="url('#boxstikes')" i='1' j='1' style="opacity:0"></rect>
+            <rect x="120" y="60" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="120" y="60" width="50" height="50" style="display:none" ></image>
+            <rect x="120" y="60" width="60" height="60"  class="dynamic-box" fill="url('#boxstikes')" i='1' j='2' style="opacity:0"></rect>
+            <rect x="180" y="60" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen"  x="180" y="60" width="50" height="50" style="display:none" ></image>
+            <rect x="180" y="60" width="60" height="60" class="dynamic-box" fill="url('#boxstikes')" i='1' j='3' style="opacity:0"></rect>
+            
+            <rect x="0" y="120" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="0" y="120" width="50" height="50" style="display:none"></image>
+            <rect x="0" y="120" width="60" height="60" class="dynamic-box" fill="url('#boxstikes')" i='2' j='0' style="opacity:0"></rect>
+            <rect x="60" y="120" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="60" y="120" width="50" height="50" style="display:none"></image>
+            <rect x="60" y="120" width="60" height="60" class="dynamic-box" fill="url('#boxstikes')" i='2' j='1' style="opacity:0"></rect>
+            <rect x="120" y="120" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="120" y="120" width="50" height="50" style="display:none"></image>
+            <rect x="120" y="120" width="60" height="60" class="dynamic-box" fill="url('#boxstikes')" i='2' j='2' style="opacity:0"></rect>
+            <rect x="180" y="120" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="180" y="120"  width="50" height="50" style="display:none"></image>
+            <rect x="180" y="120" width="60" height="60" class="dynamic-box" fill="url('#boxstikes')" i='2' j='3' style="opacity:0"></rect>
+            
+            <rect x="0" y="180" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="0" y="180" width="50" height="50" style="display:none"></image>
+            <rect x="0" y="180" width="60" height="60" class="dynamic-box" fill="url('#boxstikes')" i='3' j='0' style="opacity:0"></rect>
+            <rect x="60" y="180" width="60" height="60" fill="#ffdab9"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="60" y="180" width="50" height="50" style="display:none"></image>
+            <rect x="60" y="180" width="60" height="60" class="dynamic-box" fill="url('#boxstikes')" i='3' j='1' style="opacity:0"></rect>
+            <rect x="120" y="180" width="60" height="60" fill="#a0522d"></rect>
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="120" y="180" width="50" height="50" style="display:none"></image>
+            <rect x="120" y="180" width="60" height="60" class="dynamic-box" fill="url('#boxstikes')" i='3' j='2' style="opacity:0"></rect>
+            <rect x="180" y="180" width="60" height="60" fill="#ffdab9"></rect>  
+            <image xlink:href="queen.png" class="queen-pic" alt="Chess queen" x="180" y="180" width="50" height="50" style="display:none"></image> 
+            <rect x="180" y="180" width="60" height="60" class="dynamic-box" fill="url('#boxstikes')" i='3' j='3' style="opacity:0"></rect>
+        </svg>
+        <div class="solved-message" style="display:none">
+            BRAVO! You have solved it!
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="reset">
+            <input class="reset button" type="button" value="Reset">
+        </div>
+        <div class="impossible">
+            <input class="impossible button" type="button" value="It's impossible">
+        </div>
+    </div>
+    <div class="feedback">
+        Hope you enjoyed it. Reach out to me at: <a href="mailto:hemantsaraf08@gmail.com">hemantsaraf08@gmail.com</a>
+    </div>   
+    <script src="script.js"></script>
+</body>
+</html>
