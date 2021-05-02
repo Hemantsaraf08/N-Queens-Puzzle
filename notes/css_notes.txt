@@ -6,3 +6,11 @@ when property: contenteditable: true, is used on <div> IT BEHAVES LIKE AN INPUT 
 Similarlly: when readonly property is applied on an <input> tag it behaves like a <div> tag
 
 calc() is used to calculate and set values in CSS styles: ex: height/width to fit a container,  when position: absolute to set left and top
+
+for children of flexbox use min-width(in case of justify) min-height(in case of align) 
+because otherwise width/height is overridden (even if values are given in pixels) to fit the container's width or height, but we dont want that, 
+so we use min-width/height, and use overflow: auto in parent, later scroll bar can be made invisible
+
+display: flex must be used on every parent, not just ancestor or grand parent node
+
+INPUT tag is inline block type element, therefore we can specify there width and height, by default flex directn is row (as they are inline)
