@@ -22,11 +22,10 @@ let noOfIteration=0;
             defaultViewport: null,
             headless: false,
             args: ["--start-maximized"],
-            slowMo: 200
+            slowMo: 230
         })
         let tab = await brser.newPage();
-        // await tab.goto("https://hemantsaraf08.github.io/N-Queens-Puzzle/");
-        await tab.goto("http://127.0.0.1:5500/index.html");
+        await tab.goto("https://hemantsaraf08.github.io/N-Queens-Puzzle/");
         await tab.waitForSelector(".dynamic-box");
         // await tab.waitForTimeout(500);
 
