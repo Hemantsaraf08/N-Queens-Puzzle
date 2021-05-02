@@ -44,8 +44,8 @@ body{
 .chess-board{
     margin: 0 auto;
     height: 90vh;
-    padding-left: 0rem;
-    padding-right: 0rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     position: relative;
 }
 
