@@ -6,7 +6,7 @@ let impossibleBtn=document.querySelector(".impossible");
 
 resetBtn.addEventListener("click", ()=>location.reload());
 impossibleBtn.addEventListener("click", function(){
-    alert("It's possible, try again");
+    alert(`It's possible, try again or see the bot solve it here http://tiny.cc/pxwwtz`);
 })
 
 //build a matrix first;
