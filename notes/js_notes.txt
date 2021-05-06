@@ -11,8 +11,14 @@ where param1 --> event i.e. "click" , "keydown"
       AND INDEX INFO can't be got from list of DOM element Therefore we convert 
       DOM list to array using:
             let arr=Array.prototype.slice.call(<--DOMNodelist-->);
+            OR arr=Array.from((<--DOMNodelist-->)     //i.e. make Array "from" <--DOMNodelist--> (easy to remember)
       Then access index using 
             let i=<--DOMNodelist-->.indexOf((click)eventObject.currentTarget);
+
+*************************************************************************************
+
+SELECTING N'TH CHILD OF A NODE 
+let child2=document.querySelector(".book-list li:nth-child(2)"); //means selected second child in the list tag li under class book-list, its colon method/pseudo-class method
 
 *************************************************************************************
 it is not necessary to apply querySelector/querySelectorAll on document; 
