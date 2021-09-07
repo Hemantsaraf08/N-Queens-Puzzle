@@ -4,4 +4,4 @@
 
 ### This project has two parts 
 1. Using Javascript to set rules for queens on chess board, so that user may try to solve the puzzle
-2. Use puppeteer script [BOT] to solve the puzzle with simple recurssion algrorithm 
+2. Use puppeteer script [BOT] to solve the puzzle with simple recursion algorithm 
