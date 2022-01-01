@@ -6,8 +6,15 @@ let impossibleBtn=document.querySelector(".impossible");
 
 resetBtn.addEventListener("click", ()=>location.reload());
 impossibleBtn.addEventListener("click", function(){
-    alert(`It's possible, try again or see the bot solve it here http://tiny.cc/pxwwtz`);
+    if (confirm(`It is possible, please try again
+Press OK to see 1 of the Solution, Press Cancel to try`)) {
+                    chessboard.forEach(arr=>arr.forEach(ele=>{if(ele!==-1) chessplayBot(ele)}))
+                    botSolver(); 
+    } 
+    // alert(`It's possible, try again or see the bot solve it here http://tiny.cc/pxwwtz`);
+    
 })
+
 
 //build a matrix first;
 let chessboard=[];
@@ -26,9 +33,10 @@ for (let i = 0; i < allsquares.length; i++) {
 }
 
 function chessplay(e) {
+    console.log(e)
     console.log(QueenCount);
     let i=allsquaresArray.indexOf(e.currentTarget);
-    
+    console.log(i)
     
     let img = allsquares[i].previousElementSibling;
     if (img.getAttribute("style") === "display:none") {
@@ -136,5 +144,93 @@ function unshade(allsquares,chessboard, row,col, idx){
                 // chessboard[i][j]=-1;
             }
         }
+    }
+}
+
+function botSolver(){
+    QueenCount=0;
+    let solved=false;
+    let chessB=[];  //making chessB matrix below;
+    let r0=[];
+    const QueenC=8;
+    for(let i=0;i<QueenC;i++){
+        r0.push(0);
+    }
+    for(let i=0;i<QueenC;i++){
+        chessB.push([...r0]);
+    }
+
+    let noOfIteration=0;
+
+    function solveBT(chessB, r){
+        noOfIteration+=1;
+        if(r==8){
+            solved=true;
+              //taking a snapshot of solved puzzle
+            //   await tab.screenshot({ path: './BotSolution.png' });
+            return;
+        }
+        for(let c=0;c<QueenC;c++){
+            let booleanans=isSafe(chessB, r, c);
+            if(booleanans){
+                chessB[r][c]=1; //click;
+                let idxtoclick=(r*QueenC) + c;
+                chessplayBot(idxtoclick);
+                solveBT(chessB, r+1);
+                if(solved) return;
+                chessB[r][c]=0; //unclick & display backtracking and undisplay it;
+                // displaymes(); //display
+                // setTimeout(displaymes, 1000); //undisplay
+                chessplayBot(idxtoclick); //unclicking
+                console.log(`Backtracking for --> row ${r+1} and  col ${c+1}`);
+            }
+        }
+    }
+    //solving puzzle using simple backtracking algo, in fn. solveBT
+    solveBT(chessB, 0); //first arg is chessBoard matrix, second arg is row number
+    console.log(`Puzzle solved in ${noOfIteration} recursive call`);
+    
+}
+
+//this function is called inside botSolver
+
+
+//below fn. is called inside solveBT
+function isSafe(chessB, r, c){
+    for(let i=r-1, j=c;i>=0;i--){
+        if(chessB[i][j]==1) return false;
+    }
+    for(let i=r-1, j=c-1;i>=0&&j>=0;i--, j--){
+        if(chessB[i][j]==1) return false;
+    }
+    for(let i=r-1, j=c+1;i>=0&&j<8;i--,j++){
+        if(chessB[i][j]==1) return false;
+    }
+    return true;
+}
+function chessplayBot(idx) {
+
+    
+    let img = allsquares[idx].previousElementSibling;
+    if (img.getAttribute("style") === "display:none") {
+        QueenCount+=1;
+        if(QueenCount==targetNoQueen){
+            solvedmessage.setAttribute("style", "display:true");
+            
+        }
+        img.setAttribute("style", "display:true");
+        let row = allsquares[idx].getAttribute("i")
+        row=parseInt(row);
+        let col = allsquares[idx].getAttribute("j")
+        col=parseInt(col);
+        shade(allsquares, chessboard, row, col,idx)     //this function also removes event listeners
+    } else {
+        QueenCount-=1;
+        img.setAttribute("style", "display:none")
+        let row = allsquares[idx].getAttribute("i")
+        row=parseInt(row);
+        let col = allsquares[idx].getAttribute("j")
+        col=parseInt(col);
+        unshade(allsquares, chessboard, row, col, idx)   //this function also adds event listeners
     }
 }
